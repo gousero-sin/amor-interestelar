@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Background from "../../components/Background";
 import FloatingWindow from "../../components/FloatingWindow";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Tela2Container = styled.div`
   width: 100%;
@@ -19,16 +18,39 @@ const Tela2Container = styled.div`
 `;
 
 const SegundaPage = () => {
-  const [textoTela2, setTextoTela2] = useState(
-    "Seu texto personalizado aqui...",
-  );
   const router = useRouter();
+
+  const handleProximaTela = () => {
+    // Implementar navegação para a próxima tela futuramente
+    alert("Funcionalidade para próxima tela ainda não implementada.");
+  };
+
+  const markdownContent = `
+  # Oi Benka!
+
+
+  Essa lembrancinha simples é só pra lembrar de uma data que não é simples,
+  uma data que pra você é **muito importante**. Já é o **4º aniversário** que eu presencio,
+  e quero presenciar **muitos mais**!!!
+
+  Eu te amo demais e te acho uma pessoa **incrível**, **estudiosa**, **companheira**,
+  **fiel**, **linda** — _mais linda ainda_ — **muito linda mesmo** e **amorosa**.
+
+  Queria poder te dar mais do que isso, nessa data que é **muito mais que especial**,
+  mas nós sabemos que não será possível _kkkk_.
+
+  Então, **meus parabéns** minha benkeza pefeita!
+  Você merece o **mundo**, e o que eu puder, eu vou te dar!!!
+
+  O nosso amor, é:
+  **INTERESTELAR**
+  `;
 
   return (
     <>
       <Background />
       <Tela2Container>
-        <FloatingWindow>{textoTela2}</FloatingWindow>
+        <FloatingWindow>{markdownContent}</FloatingWindow>
       </Tela2Container>
     </>
   );
