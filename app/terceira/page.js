@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { useRouter } from "next/navigation"; // Importar o useRouter
 import ParticlesBackground from "../../components/ParticlesBackground"; // Ajuste o caminho conforme necessário
 
 // Animação para a mensagem (somente fadeIn)
@@ -42,15 +43,33 @@ const Message = styled.h1`
 
 const TerceiraPage = () => {
   const [showParticles, setShowParticles] = useState(false);
+  const router = useRouter(); // Inicializa o roteador
 
   useEffect(() => {
-    // Define um temporizador para exibir as partículas após 3 segundos
+    // Define um temporizador para exibir as partículas após 1 segundo
     const timer = setTimeout(() => {
       setShowParticles(true);
-    }, 1000); // 3 segundos
+    }, 1000); // 1 segundo
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowRight") {
+        // Navega para a quarta página
+        router.push("/quarta");
+      }
+    };
+
+    // Adiciona o listener quando o componente é montado
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Remove o listener quando o componente é desmontado
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [router]);
 
   return (
     <Container>
