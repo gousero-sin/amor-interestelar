@@ -1,0 +1,10 @@
+/* styles/globals.css */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black; /* Mantém o fundo preto até o JavaScript ser carregado */
+    overflow: hidden; /* Evita rolagem até a página estar pronta */
+    visibility: hidden; /* Esconde o conteúdo até a página carregar */
+}

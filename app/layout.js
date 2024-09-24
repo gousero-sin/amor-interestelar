@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import Preloader from "@/components/Preloader";
 
 const GlobalStyle = createGlobalStyle`
   /* Reset básico */
@@ -16,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f5f5dc; /* Cor de fundo bege claro */
+    background-color: #00000; /* Cor de fundo bege claro */
   }
 `;
 
@@ -77,18 +78,21 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="pt-BR">
-      <head>
-        <title>Amor Interestelar</title>
-      </head>
-      <body>
-        <GlobalStyle />
-        {children}
-        <Audio ref={audioRef} src="/musica.mp3" loop />
-        <Controls>
-          <ControlButton onClick={togglePlay}>
-            {isPlaying ? "Pausar Música" : "Reproduzir Música"}
-          </ControlButton>
-        </Controls>
+      <body style={{ backgroundColor: "#000000", margin: 0, padding: 0 }}>
+        <head>
+          <title>Amor Interestelar</title>
+        </head>
+        <body>
+          <GlobalStyle />
+          {children}
+          <Preloader />
+          <Audio ref={audioRef} src="/musica.mp3" loop />
+          <Controls>
+            <ControlButton onClick={togglePlay}>
+              {isPlaying ? "Pausar Música" : "Reproduzir Música"}
+            </ControlButton>
+          </Controls>
+        </body>
       </body>
     </html>
   );

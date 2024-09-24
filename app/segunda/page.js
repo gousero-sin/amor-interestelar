@@ -1,6 +1,7 @@
 // app/segunda/page.js
 "use client";
 
+import { useEffect } from "react";
 import styled from "styled-components";
 import Background from "../../components/Background";
 import FloatingWindow from "../../components/FloatingWindow";
@@ -20,14 +21,25 @@ const Tela2Container = styled.div`
 const SegundaPage = () => {
   const router = useRouter();
 
-  const handleProximaTela = () => {
-    // Implementar navegação para a próxima tela futuramente
-    alert("Funcionalidade para próxima tela ainda não implementada.");
-  };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowRight") {
+        // Navega para a terceira página
+        router.push("/terceira");
+      }
+    };
+
+    // Adiciona o listener quando o componente é montado
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Remove o listener quando o componente é desmontado
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [router]);
 
   const markdownContent = `
   # Oi Benka!
-
 
   Essa lembrancinha simples é só pra lembrar de uma data que não é simples,
   uma data que pra você é **muito importante**. Já é o **4º aniversário** que eu presencio,
@@ -39,10 +51,10 @@ const SegundaPage = () => {
   Queria poder te dar mais do que isso, nessa data que é **muito mais que especial**,
   mas nós sabemos que não será possível _kkkk_.
 
-  Então, **meus parabéns** minha benkeza pefeita!
+  Então, **meus parabéns** minha benkeza perfeita!
   Você merece o **mundo**, e o que eu puder, eu vou te dar!!!
 
-  O nosso amor, é:
+  O nosso amor é:
   **INTERESTELAR**
   `;
 
